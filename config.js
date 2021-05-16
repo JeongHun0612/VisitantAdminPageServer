@@ -7,11 +7,11 @@ exports.SQL = {
     //   password: process.env.DB_PASS,
     //   database: process.env.DB_NAME,
 
-    host: "facecog-rds.cwct330tepas.ap-northeast-2.rds.amazonaws.com",
-    user: "facecog",
-    password: "!j14682533",
-    database: "facecog",
-    port: 3306,
+    host: process.env.AWS_DB_HOST,
+    port: process.env.AWS_DB_PORT,
+    user: process.env.AWS_DB_USER,
+    password: process.env.AWS_DB_PASS,
+    database: process.env.AWS_DB_NAME,
     connectionLimit: 50,
     waitForConnections: true,
 };
