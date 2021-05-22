@@ -1,6 +1,5 @@
 const express = require("express");
 const dateFormat = require("dateformat");
-
 const router = express.Router();
 const conn = require("../database").init();
 
@@ -39,6 +38,7 @@ router.get("/", (req, res) => {
 router.get("/dateSearch", (req, res) => {
     const date = req.query.date;
 
+
     if (date != undefined && date.length == 10) {
         conn.query(
             'SELECT * FROM faceInfo WHERE created_at LIKE "' + date + '%"',
@@ -52,8 +52,8 @@ router.get("/dateSearch", (req, res) => {
             }
         );
     } else {
-        const dateSplit1 = Number(date.split(",")[0].substr(8, 2));
-        const dateSplit2 = Number(date.split(",")[1].substr(8, 2));
+        const dateSplit1 = new Date(date.split(",")[0])
+        const dateSplit2 = new Date(date.split(",")[1])
 
         sql1 = 'SELECT * FROM faceInfo WHERE created_at BETWEEN date("' + date.split(",")[0] + '") AND date("' + date.split(",")[1] + '")+1';
         sql2 = 'SELECT * FROM faceInfo WHERE created_at BETWEEN date("' + date.split(",")[1] + '") AND date("' + date.split(",")[0] + '")+1';

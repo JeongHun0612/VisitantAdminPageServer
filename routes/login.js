@@ -27,7 +27,7 @@ router.post("/", (req, res) => {
         email: req.body.email,
         password: req.body.password,
     };
-    const sql = 'SELECT * FROM users WHERE email = "' + userInfo.email + '"';
+    const sql = 'SELECT * FROM admin_users WHERE email = "' + userInfo.email + '"';
     conn.query(sql, (err, row) => {
         if (row[0] !== undefined && row[0].email == userInfo.email) {
             var pw_bytes = cryptoJS.AES.decrypt(row[0].password, secret.secret_key);
