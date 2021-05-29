@@ -3,6 +3,7 @@ const dateFormat = require("dateformat");
 const router = express.Router();
 const conn = require("../database").init();
 
+// faceInfo GET
 router.get("/", (req, res) => {
     const idx = req.query.idx;
 
@@ -35,6 +36,7 @@ router.get("/", (req, res) => {
     }
 });
 
+// 날짜별 faceInfo GET
 router.get("/dateSearch", (req, res) => {
     const date = req.query.date;
 
@@ -71,6 +73,7 @@ router.get("/dateSearch", (req, res) => {
     }
 });
 
+// faceInfo 비고 데이터 GET
 router.get("/editRemark/:id", (req, res) => {
     const idx = req.params.id;
     const sql = "SELECT id, remark FROM faceInfo WHERE id = " + idx;
@@ -84,6 +87,7 @@ router.get("/editRemark/:id", (req, res) => {
     });
 });
 
+// faceInfo 비고 데이터 PATCH(수정)
 router.patch("/editRemark/:id", (req, res) => {
     const idx = req.params.id;
     const remark_text = req.body.remark_text;
@@ -100,6 +104,7 @@ router.patch("/editRemark/:id", (req, res) => {
     });
 });
 
+// faceInfo 데이터 전체 DELETE
 router.delete("/delete", (req, res) => {
     const sql = "DELETE FROM faceInfo";
 
@@ -113,6 +118,7 @@ router.delete("/delete", (req, res) => {
     });
 });
 
+// faceInfo 데이터 선택 DELETE
 router.delete("/delete/:id", (req, res) => {
     const idx = req.params.id;
 
@@ -127,6 +133,7 @@ router.delete("/delete/:id", (req, res) => {
     });
 });
 
+// faceInfo 데이터 가공
 function dataFormat(row) {
     for (key in row) {
         row[key].date = dateFormat(row[key].created_at, "yyyy-mm-dd");

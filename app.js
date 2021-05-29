@@ -7,6 +7,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use("/", require("./routes/index"));
+app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/faceInfo", require("./routes/faceInfo"));
