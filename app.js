@@ -12,6 +12,7 @@ app.use("/login", require("./routes/login"));
 app.use("/dashboard", require("./routes/dashboard"));
 app.use("/faceInfo", require("./routes/faceInfo"));
 app.use("/visitorList", require("./routes/visitorList"));
+app.use("/userList", require("./routes/userList"));
 
 app.listen(3000, () => {
     console.log("Server started on port 3000");

@@ -11,13 +11,14 @@ router.get("/", (req, res) => {
     const token = req.headers["access-token"]; // 헤더에 포함된 token값
     let the_secret_key = "the_secret_key";
 
-    jwt.verify(token, the_secret_key, (err, toekn_res) => { // token값 비교
+    jwt.verify(token, the_secret_key, (err, token_res) => { // token값 비교
         if (err) console.log(err);
         else {
             res.json({
-                id: toekn_res.id,
-                name: toekn_res.name,
-                email: toekn_res.email,
+                id: token_res.id,
+                name: token_res.name,
+                email: token_res.email,
+                role: token_res.role
             });
         }
     });
@@ -39,10 +40,14 @@ router.post("/", (req, res) => {
                         id: row[0].id,
                         name: row[0].name,
                         email: row[0].email,
+                        role: row[0].role
                     },
                     "the_secret_key"
                 );
-                res.json({ token });
+                res.json({
+                    token: token,
+                    userInfo: row[0]
+                });
             } else {
                 res.json({
                     status: 400,
