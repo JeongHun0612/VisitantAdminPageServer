@@ -9,7 +9,7 @@ app.use(cors());
 app.use("/", require("./routes/index"));
 app.use("/register", require("./routes/register"));
 app.use("/login", require("./routes/login"));
-app.use("/dashboard", require("./routes/dashboard"));
+app.use("/dashBoard", require("./routes/dashBoard"));
 app.use("/faceInfo", require("./routes/faceInfo"));
 app.use("/visitorList", require("./routes/visitorList"));
 app.use("/userList", require("./routes/userList"));

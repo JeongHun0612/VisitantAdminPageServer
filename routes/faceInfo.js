@@ -40,7 +40,6 @@ router.get("/", (req, res) => {
 router.get("/dateSearch", (req, res) => {
     const date = req.query.date;
 
-
     if (date != undefined && date.length == 10) {
         conn.query(
             'SELECT * FROM faceInfo WHERE created_at LIKE "' + date + '%"',
