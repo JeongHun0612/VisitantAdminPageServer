@@ -18,7 +18,6 @@ router.get('/visitorCount', (req, res) => {
     })
 })
 
-
 // dashBoard visitorNumLine GET
 router.get('/visitorNumLine', (req, res) => {
     const dateType = req.query.dateType;
