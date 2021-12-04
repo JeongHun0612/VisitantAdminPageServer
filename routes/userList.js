@@ -6,6 +6,7 @@ const conn = require("../database").init();
 // userList GET
 router.get('/', (req, res) => {
     const sql = 'SELECT * FROM admin_users'
+    console.log(sql);
 
     conn.query(sql, (err, row) => {
         if (err) console.log(err)
