@@ -72,9 +72,11 @@ router.get('/faceSearch', (req, res) => {
     var searchResultList = [];
 
     if (req.query.faceFiles == "sg.jpg") {
-        photo_source = "upload/visitor_07ae6da9-8727-4d04-b4a3-e490ada42be7.jpg"; //sg
+        photo_source = "upload/visitor_0afb83ab-b123-4a0a-8d47-600d82e3f434.jpg"; //sg
     } else if (req.query.faceFiles == "sm.jpg") {
-        photo_source = "upload/visitor_ef0731e8-1e4b-4cf8-9a2c-d7ece95d2a09.jpg"; //sm
+        photo_source = "upload/visitor_cf015c57-2d9f-41ea-8016-be04eb7d899c.jpg"; //sm
+    } else if (req.query.faceFiles == "jh.jpg") {
+        photo_source = "upload/visitor_c053908a-a390-4cba-a532-ef7435adeae8.jpg"; //jh
     }
 
     s3.listObjectsV2(s3Params, (err, data) => {
@@ -96,7 +98,7 @@ router.get('/faceSearch', (req, res) => {
                             Name: content.Key
                         },
                     },
-                    SimilarityThreshold: 90
+                    SimilarityThreshold: 98
                 }
 
                 client.compareFaces(params, function(err, response) {
@@ -113,7 +115,9 @@ router.get('/faceSearch', (req, res) => {
                                 conn.query(sql, (err, row) => {
                                     if (err) console.log(err)
                                     else {
-                                        searchResultList.push(row[0]);
+                                        if (row[0] != null) {
+                                            searchResultList.push(row[0]);
+                                        }
                                     }
                                 })
 
