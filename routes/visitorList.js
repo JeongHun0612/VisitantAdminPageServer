@@ -5,7 +5,6 @@ const router = express.Router();
 const conn = require("../database").init();
 const AWS = require('aws-sdk')
 const bucket = 'final-facecog-bucket' // the bucketname without s3://
-const photo_source = 'upload/visitor_07ae6da9-8727-4d04-b4a3-e490ada42be7.jpg'
 
 const config = new AWS.Config({
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -69,7 +68,14 @@ router.get("/dateSearch", (req, res) => {
 });
 
 router.get('/faceSearch', (req, res) => {
+    var photo_source = null;
     var searchResultList = [];
+
+    if (req.query.faceFiles == "sg.jpg") {
+        photo_source = "upload/visitor_07ae6da9-8727-4d04-b4a3-e490ada42be7.jpg"; //sg
+    } else if (req.query.faceFiles == "sm.jpg") {
+        photo_source = "upload/visitor_ef0731e8-1e4b-4cf8-9a2c-d7ece95d2a09.jpg"; //sm
+    }
 
     s3.listObjectsV2(s3Params, (err, data) => {
         if (err) {
